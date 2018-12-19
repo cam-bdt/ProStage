@@ -2,8 +2,9 @@
 
 namespace App\Controller;
 
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Entity\Entreprise;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class ProStageController extends AbstractController
 {
@@ -30,7 +31,8 @@ class ProStageController extends AbstractController
      */
     public function listeEntrep()
     {
-        return $this->render('pro_stage/ListeEntrep.html.twig');
+        $repositoryEntrep = $this->getDoctrine()->getRepository(Entreprise::class)->findAll();
+        return $this->render('pro_stage/ListeEntrep.html.twig', ['entreprise'=>$repositoryEntrep]);
     }
 
     /**

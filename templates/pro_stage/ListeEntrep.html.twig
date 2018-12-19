@@ -2,5 +2,12 @@
         {% block title %} ENTREPRISES - PROSTAGE {% endblock %}
         {% block stylesheets %}{% endblock %}
 
-        {% block body %} <H1> Liste des entreprises </H1>{% endblock %}
+        {% block body %} <H1> Liste des entreprises </H1>
+        
+        <ul>
+        {% for entrep in entreprise %}
+        <li> {{entrep.nom}} </li>
+        {% endfor %}
+        </ul>
+        {% endblock %}
         {% block javascripts %}{% endblock %}
