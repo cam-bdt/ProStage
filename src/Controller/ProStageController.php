@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Stage;
 use App\Entity\Formation;
 use App\Entity\Entreprise;
 use Symfony\Component\Routing\Annotation\Route;
@@ -50,9 +51,9 @@ class ProStageController extends AbstractController
      */
     public function unStage($id)
     {
-        return $this->render('pro_stage/unStage.html.twig',[
-            'controller_name'=> 'ProStageController',
-            'idStage'=>$id
-        ]);
+        $repositoryUnStage = $this->getDoctrine()->getRepository(Stage::class)->find($id);
+        return $this->render('pro_stage/unStage.html.twig', [
+            'stage'=> $repositoryUnStage,
+            'idStage'=>$id]);
     }
 }
