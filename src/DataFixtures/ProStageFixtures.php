@@ -30,7 +30,7 @@ class ProStageFixtures extends Fixture
 
         $stage = new Stage();
         $stage->setTitre($faker->jobTitle);
-        $stage->setDescription($faker->address);
+        $stage->setDescription($faker->realText($maxNbChars = 200, $indexSize = 2) );
         $stage->setMail($faker->companyEmail);
         $stage->setTelephone($faker->phoneNumber);
         $stage->setNomContact($faker->name($gender = null));
