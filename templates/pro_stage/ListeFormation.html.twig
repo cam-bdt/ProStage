@@ -2,5 +2,11 @@
         {% block title %} Formations - PROSTAGE {% endblock %}
         {% block stylesheets %}{% endblock %}
 
-        {% block body %} <H1> Liste des formations </H1>{% endblock %}
+        {% block body %} <H1> Liste des formations </H1>
+        <ul>
+        {% for forma in formation %}
+                <li> {{ forma.libelle }} </li>
+        {% endfor %}
+        </ul>
+        {% endblock %}
         {% block javascripts %}{% endblock %}

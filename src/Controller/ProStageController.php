@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\Formation;
 use App\Entity\Entreprise;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -40,8 +41,9 @@ class ProStageController extends AbstractController
      */
     public function listeFormations()
     {
-        return $this->render('pro_stage/ListeFormation.html.twig');
-    }
+        $repositoryFormation = $this->getDoctrine()->getRepository(Formation::class)->findAll();
+        return $this->render('pro_stage/ListeFormation.html.twig', ['formation'=>$repositoryFormation]);
+        }
 
     /**
      * @Route("/stage/{id}",name="Stage")
