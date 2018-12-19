@@ -2,7 +2,9 @@
 {% block title %} Stage n°{{idStage}} - PROSTAGE {% endblock %}
 {% block stylesheets %}
 <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+{#
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+        crossorigin="anonymous"> #}
 {% endblock %}
 
 
@@ -13,17 +15,24 @@
         <div class="row">
 
                 <div class="col-3">
-                        <H3> <b> <u>Description :</u> </b>  <p> {{ stage.description }} </p>
-                        </H3>
+                        <p>
+                                <H3> <b> <u> Description :</u> </b> </H3> {{ stage.description }}
+                        </p>
                 </div>
                 <div class="col-3">
-                        <h3> <b> <u>  Mail :</u> </b> <p> {{ stage.mail }} </p> </h3>
+                        <p>
+                                <h3> <b> <u> Mail :</u> </b> </h3> {{ stage.mail }}
+                        </p>
                 </div>
                 <div class="col-3">
-                        <h3> <b> <u> Numéro de téléphone :</u> </b> <p> {{ stage.telephone }} </p> </h3>
+                        <p>
+                                <h3> <b> <u> Numéro de téléphone :</u> </b> </h3> {{ stage.telephone }}
+                        </p>
                 </div>
                 <div class="col-3">
-                        <h3> <b> <u> Nom du contact :</u> </b> <p> {{ stage.nomContact }} </p> </h3>
+                        <p>
+                                <h3> <b> <u> Nom du contact :</u> </b> </h3> {{ stage.nomContact }}
+                        </p>
                 </div>
         </div>
 </div>

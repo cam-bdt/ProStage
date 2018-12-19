@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+{% block title %} Stages - PROSTAGE {% endblock %}
+{% block stylesheets %}{% endblock %}
+
+{% block body %} <H1> Liste des stages </H1>
+
+<ul>
+    {% for stage in stages %}
+    <li>
+        <p>
+            <h3> <a href="/stages/{{stage.id}}"> {{stage.titre}} </a> </h3> chez <a href="entreprises/{{stage.entreprise.id}}"> {{ stage.entreprise.nom}}</a>
+        </p>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
+{% block javascripts %}{% endblock %}
