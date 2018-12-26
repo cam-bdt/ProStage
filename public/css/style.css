@@ -1,0 +1,24 @@
+.navbar {
+    font-size: 18px;
+}
+
+.h2carousel {
+    margin-bottom: 120px;
+    font-size: 70px;
+    color: grey;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    vertical-align: 50px;
+}
+
+.navbar-brand {
+    margin-top: 25px;
+    font-size: 200px;
+}
+
+.form-inline {
+    font-size: 500px;
+} 
+
+.outline-success {
+    font-size: 200px;
+}

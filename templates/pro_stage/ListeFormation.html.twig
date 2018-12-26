@@ -1,11 +1,19 @@
 {% extends 'base.html.twig' %}
-        {% block title %} Formations - PROSTAGE {% endblock %}
+{% block title %} Formations - PROSTAGE {% endblock %}
 
-        {% block body %} <H1> Liste des formations </H1>
-        <ul>
+{% block titreslider1 %}
+Liste des formations
+{% endblock %}
+
+{% block titreslider2 %}
+Liste des formations
+{% endblock %}
+
+{% block body %}
+<ul>
         {% for forma in formation %}
-                <li> {{ forma.libelle }} </li>
+        <li> {{ forma.libelle }} </li>
         {% endfor %}
-        </ul>
-        {% endblock %}
-        {% block javascripts %}{% endblock %}
+</ul>
+{% endblock %}
+{% block javascripts %}{% endblock %}

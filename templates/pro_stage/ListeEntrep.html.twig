@@ -1,11 +1,20 @@
 {% extends 'base.html.twig' %}
-        {% block title %} ENTREPRISES - PROSTAGE {% endblock %}
+{% block title %} ENTREPRISES - PROSTAGE {% endblock %}
 
-        {% block body %} <H1> Liste des entreprises </H1>
-        
-        <ul>
+{% block titreslider1 %}
+Liste des entreprises
+{% endblock %}
+
+{% block titreslider2 %}
+Liste des entreprises
+{% endblock %}
+
+
+{% block body %} 
+
+<ul>
         {% for entrep in entreprise %}
-        <li> {{entrep.nom}} </li>
+        <li> <a href="/entreprise/{{entrep.id}}">{{entrep.nom}} </li> </a>
         {% endfor %}
-        </ul>
-        {% endblock %}
+</ul>
+{% endblock %}

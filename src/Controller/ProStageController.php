@@ -11,16 +11,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class ProStageController extends AbstractController
 {
     /**
-     * @Route("/pro/stage", name="pro_stage")
-     */
-    public function index()
-    {
-        return $this->render('pro_stage/index.html.twig', [
-            'controller_name' => 'ProStageController',
-        ]);
-    }
-
-    /**
      * @Route("/",name="Accueil")
      */
     public function accueil()
@@ -29,7 +19,16 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/entreprises",name="Liste entreprises")
+     * @Route("/stages", name="liste_stages")
+     */
+    public function listeStages()
+    {
+        $repositoryStages = $this->getDoctrine()->getRepository(Stage::class)->findAll();
+        return $this->render('pro_stage/ListeStage.html.twig', ['stage'=>$repositoryStages]);
+    }
+
+    /**
+     * @Route("/entreprises",name="liste_entreprises")
      */
     public function listeEntrep()
     {
@@ -38,7 +37,7 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/formations",name="Formations")
+     * @Route("/formations",name="liste_formations")
      */
     public function listeFormations()
     {
@@ -55,5 +54,16 @@ class ProStageController extends AbstractController
         return $this->render('pro_stage/unStage.html.twig', [
             'stage'=> $repositoryUnStage,
             'idStage'=>$id]);
+    }
+
+    /**
+     * @Route("/entreprise/{id}",name="entreprise")
+     */
+    public function uneEntreprise($id)
+    {
+        $repositoryUneEntreprise = $this->getDoctrine()->getRepository(Entreprise::class)->find($id);
+        return $this->render('pro_stage/uneEntrep.html.twig', [
+            'entrep'=> $repositoryUneEntreprise,
+            'idEntrep'=>$id]);
     }
 }

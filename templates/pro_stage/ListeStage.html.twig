@@ -1,0 +1,16 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} PROSTAGE - Liste Stages {% endblock %}
+
+{% block titreslider1 %} Liste des stages {% endblock %}
+{% block titreslider2 %} Liste des stages {% endblock %}
+
+{% block body %} 
+
+<ul>
+{% for sta in stage %}
+<li> <a href="/stage/{{sta.id}}"> {{ sta.titre }} </a></li>
+{% endfor %}
+</ul>
+
+ {% endblock %}

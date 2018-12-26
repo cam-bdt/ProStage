@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} ENTREPRISE - {{entrep.nom}} {% endblock %}
+
+{% block titreslider1 %} {{entrep.nom}} {% endblock %}
+
+{% block titreslider2 %} {{entrep.nom}} {% endblock %}
+
+{% block body %}
+
+<p>
+    <h3> Nom de l'entreprise :</h3> {{entrep.nom}}
+</p>
+<p>
+    <h3> Activité : </h3> {{entrep.activite}}
+</p>
+<p>
+    <h3> Site : </h3> {{entrep.site}}
+</p>
+<p>
+    <h3> Liste des stages proposés par {{entrep.nom}} : </h3>
+    <ul>
+        {% for stage in entrep.stages %}
+        <li>
+            <a href="/stage/{{stage.getId()}}"> {{stage.titre}}</a>
+        </li>
+        {% endfor %}
+    </ul>
+</p>
+{% endblock %}

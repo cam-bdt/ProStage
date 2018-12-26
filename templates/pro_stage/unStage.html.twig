@@ -1,9 +1,33 @@
 {% extends 'base.html.twig' %}
-        {% block title %} Stage n°{{idStage}} - PROSTAGE {% endblock %}
+{% block title %} Stage n°{{idStage}} - PROSTAGE {% endblock %}
 
-        {% block body %} <H1> Bienvenue sur le stage n°{{idStage}} </H1>
-        
-        
-        
-        {% endblock %}
-        {% block javascripts %}{% endblock %}
+{% block titreslider1 %} Bienvenue sur le stage n°{{idStage}} {% endblock %}
+
+{% block titreslider2 %} Bienvenue sur le stage n°{{idStage}} {% endblock %}
+
+{% block body %}
+<div class="container-fluid">
+        <div class="row">
+                <div class="col-9">
+
+                        <p>
+                                <h3>Titre : </h3>{{stage.titre}}
+                        </p>
+                        <p>
+                                <h3>Description : </h3>{{stage.description}}
+                        </p>
+                </div>
+                <div class="col-3">
+                        <p>
+                                <h3>Nom du contact : </h3>{{stage.nomContact}}
+                        </p>
+                        <p>
+                                <h3>Téléphone de contact : </h3>{{stage.telephone}}
+                        </p>
+                        <p>
+                                <h3>Mail de contact : </h3>{{stage.mail}}
+                        </p>
+                </div>
+        </div>
+</div>
+{% endblock %}
