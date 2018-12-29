@@ -13,9 +13,9 @@
 <p> <h3> Stages proposés pour la formation de {{ forma.libelle }} : </h3></p>
 
 <ul>
-{% for forma in forma %}
+{% for stage in forma.stages %}
 
-<li> {{ forma.libelle }} </li>
+<li> <a href="/stage/{{stage.id}}">{{ stage.titre }}</a></li>
 
 {% endfor %}
 </ul>
