@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %}
+{% block title %} {{forma.libelle}} - PROSTAGE {% endblock %}
+
+{% block titreslider1 %} Bienvenue sur la formation n°{{idFormation}} : {{ forma.libelle }} {% endblock %}
+
+{% block titreslider2 %} Bienvenue sur la formation n°{{idFormation}} : {{ forma.libelle }} {% endblock %}
+
+{% block body %}
+
+
+<p> <h3> Libellé de la formation : </h3>{{ forma.libelle }} </p>
+
+<p> <h3> Stages proposés pour la formation de {{ forma.libelle }} : </h3></p>
+
+<ul>
+{% for forma in forma %}
+
+<li> {{ forma.libelle }} </li>
+
+{% endfor %}
+</ul>
+
+{% endblock %}
