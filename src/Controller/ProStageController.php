@@ -96,18 +96,29 @@ class ProStageController extends AbstractController
     if ($form->isSubmitted() && $form->isValid()) {
         $recherche = $form->getData('recherche');
         $recherche = $recherche["recherche"];
-
         $repositoryUneFormation = $this->getDoctrine()->getRepository(Formation::class)->find($recherche);
+
+        if ($repositoryUneFormation == true){
         return $this->redirectToRoute('formation', [
             'forma'=> $repositoryUneFormation,
             'idFormation'=>$recherche,
             'id'=>$recherche]);
+        }
+        elseif ($repositoryUneFormation != true) {
+            $this->addFlash(
+                'notice',
+                'Your changes were saved!'
+            );
+            return $this->redirectToRoute('Recherche');
+            }
     }
-    else echo "nulnul";
+    else {
+        echo "nulnul";
+       }
 
     
     return $this->render('pro_stage/recherche.html.twig', array(
-        'form' => $form->createView(),
+        'form' => $form->createView()
     )); 
 }
 }
