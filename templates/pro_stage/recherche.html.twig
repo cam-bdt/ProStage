@@ -9,20 +9,32 @@
 {% block body %}
 
 {% for message in app.flashes('notice') %}
-    <div class="alert alert-warning" role="alert">
-  Le champs que vous avez entré est introuvable
+<div class="alert alert-warning" role="alert">
+    Le champs que vous avez entré est introuvable
 </div>
 {% endfor %}
 
+<div class="row">
+    <div class="col-4">
 
 
-{{ form_start(form) }}
-    {{ form_errors(form) }}
+
+        {{ form_start(form) }}
+        {{ form_errors(form) }}
 
 
-{{ form_end(form) }}
+        {{ form_end(form) }}
+    </div>
+    <div class="col-4">
+
+        {{ form_start(form2) }}
+        {{ form_errors(form2) }}
 
 
+        {{ form_end(form2) }}
+    </div>
+
+</div>
 
 
 {% endblock %}

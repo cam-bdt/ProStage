@@ -84,11 +84,11 @@ class ProStageController extends AbstractController
     /**
      * @Route("/recherche",name="Recherche")
      */
-    public function rechercher(Request $request)
+    public function rechercher(Request $request,Request $request2)
     {
         $form = $this->createFormBuilder(null)
         ->add('recherche', TextType::class)
-        ->add('Rechercher', SubmitType::class)
+        ->add('Rechercher une formation par l\'id', SubmitType::class)
         ->getForm();
 
         $task=$form->handleRequest($request);
@@ -97,12 +97,13 @@ class ProStageController extends AbstractController
         $recherche = $form->getData('recherche');
         $recherche = $recherche["recherche"];
         $repositoryUneFormation = $this->getDoctrine()->getRepository(Formation::class)->find($recherche);
+        
 
         if ($repositoryUneFormation == true){
-        return $this->redirectToRoute('formation', [
-            'forma'=> $repositoryUneFormation,
-            'idFormation'=>$recherche,
-            'id'=>$recherche]);
+            return $this->redirectToRoute('formation', [
+                'forma'=> $repositoryUneFormation,
+                'idFormation'=>$repositoryUneFormation->getId(),
+                'id'=>$repositoryUneFormation->getId()]);
         }
         elseif ($repositoryUneFormation != true) {
             $this->addFlash(
@@ -112,13 +113,41 @@ class ProStageController extends AbstractController
             return $this->redirectToRoute('Recherche');
             }
     }
-    else {
-        echo "nulnul";
-       }
+
+
+    $form2 = $this->createFormBuilder(null)
+    ->add('recherche', TextType::class)
+    ->add('Rechercher un stage par l\'id', SubmitType::class)
+    ->getForm();
+
+    $task2=$form2->handleRequest($request2);
+
+if ($form2->isSubmitted() && $form2->isValid()) {
+    $recherche2 = $form2->getData('recherche');
+    $recherche2 = $recherche2["recherche"];
+    $repositoryUnStage = $this->getDoctrine()->getRepository(Stage::class)->find($recherche2);
+    
+
+    if ($repositoryUnStage == true){
+        return $this->redirectToRoute('Stage', [
+                'stage'=> $repositoryUnStage,
+                'idStage'=>$repositoryUnStage->getId(),
+                'id'=>$repositoryUnStage->getId()
+                ]);
+    }
+    elseif ($repositoryUnStage != true) {
+        $this->addFlash(
+            'notice',
+            'Your changes were saved!'
+        );
+        return $this->redirectToRoute('Recherche');
+        }
+}
 
     
     return $this->render('pro_stage/recherche.html.twig', array(
-        'form' => $form->createView()
+        'form' => $form->createView(),
+        'form2' => $form2->createView()
     )); 
 }
 }
