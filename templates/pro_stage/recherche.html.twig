@@ -1,0 +1,19 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Prostage - Rechercher {% endblock %}
+
+{% block titreslider1 %} Prostage - Rechercher {% endblock %}
+
+{% block titreslider2 %} Prostage - Rechercher {% endblock %}
+
+{% block body %}
+
+{{ form_start(form) }}
+    {{ form_errors(form) }}
+
+    {{ form_row(form.recherche) }}
+
+    {{ form_row(form.Rechercher, { 'label': 'Rechercher' }) }}
+{{ form_end(form) }}
+
+{% endblock %}
