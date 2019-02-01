@@ -19,6 +19,17 @@ class StageRepository extends ServiceEntityRepository
         parent::__construct($registry, Stage::class);
     }
 
+    public function findByTitre($value)
+    {
+        return $this->createQueryBuilder('s')
+                    ->select('s')
+                    ->from(Stage::class, 'sta')
+                    ->where('s.titre = \'$value\'')
+                    ->getQuery()
+                    ->getResult()
+        ;
+    }
+
     // /**
     //  * @return Stage[] Returns an array of Stage objects
     //  */

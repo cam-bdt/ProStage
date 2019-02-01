@@ -84,8 +84,11 @@ class ProStageController extends AbstractController
     /**
      * @Route("/recherche",name="Recherche")
      */
-    public function rechercher(Request $request,Request $request2)
+    public function rechercher(Request $request,Request $request3)
     {
+/* 
+        //----------------------------FORM ID FORMATION-------------------
+
         $form = $this->createFormBuilder(null)
         ->add('recherche', TextType::class)
         ->add('Rechercher une formation par l\'id', SubmitType::class)
@@ -114,7 +117,7 @@ class ProStageController extends AbstractController
             }
     }
 
-
+//----------------------------FORM ID STAGE-------------------
     $form2 = $this->createFormBuilder(null)
     ->add('recherche', TextType::class)
     ->add('Rechercher un stage par l\'id', SubmitType::class)
@@ -149,5 +152,43 @@ if ($form2->isSubmitted() && $form2->isValid()) {
         'form' => $form->createView(),
         'form2' => $form2->createView()
     )); 
+
+ */
+//----------------------------FORM LIBELLE STAGE-------------------
+$form3 = $this->createFormBuilder(null)
+->add('recherche', TextType::class)
+->add('Rechercher un stage par son libellé', SubmitType::class)
+->getForm();
+
+$task3=$form3->handleRequest($request3);
+
+if ($form3->isSubmitted() && $form3->isValid()) {
+$recherche3 = $form3->getData('recherche');
+$recherche3 = $recherche3["recherche"];
+$repositoryUnStage = $this->getDoctrine()->getRepository(Stage::class)->findByTitre($recherche3);
+
+
+if ($repositoryUnStage == true){
+    return $this->redirectToRoute('Stage', [
+            'stage'=> $repositoryUnStage,
+            'idStage'=>$repositoryUnStage->getId(),
+            'id'=>$repositoryUnStage->getId()
+            ]);
+}
+elseif ($repositoryUnStage != true) {
+    $this->addFlash(
+        'notice',
+        'Your changes were saved!'
+    );
+    return $this->redirectToRoute('Recherche');
+    }
+}
+
+
+return $this->render('pro_stage/recherche.html.twig', array(
+    /* 'form' => $form->createView(),
+    'form2' => $form2->createView(), */
+    'form3' => $form3->createView()
+)); 
 }
 }
