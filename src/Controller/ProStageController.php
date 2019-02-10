@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use App\Form\EntrepriseType;
 
 class ProStageController extends AbstractController
 {
@@ -68,6 +69,25 @@ class ProStageController extends AbstractController
         return $this->render('pro_stage/uneEntrep.html.twig', [
             'entrep'=> $repositoryUneEntreprise,
             'idEntrep'=>$id]);
+    }
+
+    /**
+     * @Route("/create/entreprise",name="createEntreprise")
+     */
+    public function createEntrep()
+    {
+        $entrep = new Entreprise();
+        $form = $this->createFormBuilder($entrep)
+            ->add('nom', TextType::class)
+            ->add('activite', TextType::class)
+            ->add('adresse')
+            ->add('site')
+            ->add('save', SubmitType::class, ['label' => 'Create Entrep'])
+            ->getForm();
+
+        return $this->render('pro_stage/createEntrep.html.twig', [
+            'form'=> $form-> createView(),
+            ]);
     }
 
     /**
