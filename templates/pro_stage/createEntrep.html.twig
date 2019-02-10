@@ -10,7 +10,15 @@ Ajouter une entreprise
 {% endblock %}
 
 
-{% block body %} 
+{% block body %}
+{% for label, messages in app.flashes %}
+{% for message in messages %}
+<div class="flash-{{ label }} alert alert-{{ label }}">
+    {{ message }}
+</div>
+{% endfor %}
+<hr>
+{% endfor %}
 
 {{ form(form)}}
 {% endblock %}

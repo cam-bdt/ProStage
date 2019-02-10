@@ -72,19 +72,44 @@ class ProStageController extends AbstractController
     }
 
     /**
+     * @Route("/entreprise/{identrep}/edit", name="editEntrep")
      * @Route("/create/entreprise",name="createEntreprise")
      */
-    public function createEntrep()
+    public function createEntrep(Request $request, Entreprise $entrep = null)
     {
-        $entrep = new Entreprise();
+        if(!$entrep) 
+        {
+            $entrep = new Entreprise();
+            ECHO 'nvelle';
+        }
+
+
         $form = $this->createFormBuilder($entrep)
             ->add('nom', TextType::class)
             ->add('activite', TextType::class)
             ->add('adresse')
             ->add('site')
-            ->add('save', SubmitType::class, ['label' => 'Create Entrep'])
+            ->add('save', SubmitType::class, ['label' => 'Créer une nouvelle entreprise'])
             ->getForm();
 
+
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                //récupérer dans $entrep les données submitted
+                $entrep = $form->getData();
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($entrep);
+                $entityManager->flush();
+
+                $this->addFlash(
+                    'success',
+                    'Les réponses aux formulaires ont bien été enregistrées!'
+                );
+            }
+        
         return $this->render('pro_stage/createEntrep.html.twig', [
             'form'=> $form-> createView(),
             ]);
