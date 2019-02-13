@@ -72,18 +72,12 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/entreprise/{identrep}/edit", name="editEntrep")
      * @Route("/create/entreprise",name="createEntreprise")
      */
-    public function createEntrep(Request $request, Entreprise $entrep = null)
+    public function createEntrep(Request $request)
     {
-        if(!$entrep) 
-        {
-            $entrep = new Entreprise();
-            ECHO 'nvelle';
-        }
-
-
+        $entrep = new Entreprise();
+        
         $form = $this->createFormBuilder($entrep)
             ->add('nom', TextType::class)
             ->add('activite', TextType::class)
@@ -106,7 +100,7 @@ class ProStageController extends AbstractController
 
                 $this->addFlash(
                     'success',
-                    'L\'entreprise a bien été créée/modifiée.'
+                    'L\'entreprise a bien été créée.'
                 );
                 return $this->render('pro_stage/uneEntrep.html.twig', [
                     'id'=> $entrep->getId(),
@@ -115,8 +109,49 @@ class ProStageController extends AbstractController
             }
         
         return $this->render('pro_stage/createEntrep.html.twig', [
-            'form'=> $form-> createView(),
+            'form'=> $form->createView(),
             ]);
+    }
+
+    /**
+     * @Route("/entreprise/{entrep}/edit",name="entreprise_edit")
+     */
+    public function edit(Entreprise $entrep, Request $request)
+    {
+        $form = $this->createFormBuilder($entrep)
+            ->add('nom', TextType::class)
+            ->add('activite', TextType::class)
+            ->add('adresse')
+            ->add('site')
+            ->add('save', SubmitType::class, ['label' => 'Modifier l\'entreprise'])
+            ->getForm();
+
+
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                //récupérer dans $entrep les données submitted
+                $entrep = $form->getData();
+
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->flush();
+                $entityManager->persist($entrep);
+
+                $this->addFlash(
+                    'success',
+                    'L\'entreprise a bien été modifiée.'
+                );
+                return $this->render('pro_stage/uneEntrep.html.twig', [
+                    'id'=> $entrep->getId(),
+                    'entrep'=>$entrep
+                ]);
+            }
+        
+        return $this->render('pro_stage/editEntrep.html.twig', [
+            'form'=> $form->createView(),
+            ]);
+        
     }
 
     /**

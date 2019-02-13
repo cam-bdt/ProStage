@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+{% block title %} NOUVELLE ENTREPRISE - PROSTAGE {% endblock %}
+
+{% block titreslider1 %}
+Modifier une entreprise
+{% endblock %}
+
+{% block titreslider2 %}
+Modifier une entreprise
+{% endblock %}
+
+
+{% block body %}
+{% for label, messages in app.flashes %}
+{% for message in messages %}
+<div class="flash-{{ label }} alert alert-{{ label }}">
+    {{ message }}
+</div>
+{% endfor %}
+<hr>
+{% endfor %}
+
+{{ form(form)}}
+{% endblock %}
