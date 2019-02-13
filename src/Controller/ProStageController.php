@@ -101,13 +101,17 @@ class ProStageController extends AbstractController
                 $entrep = $form->getData();
 
                 $entityManager = $this->getDoctrine()->getManager();
-                $entityManager->persist($entrep);
                 $entityManager->flush();
+                $entityManager->persist($entrep);
 
                 $this->addFlash(
                     'success',
-                    'Les réponses aux formulaires ont bien été enregistrées!'
+                    'L\'entreprise a bien été créée/modifiée.'
                 );
+                return $this->render('pro_stage/uneEntrep.html.twig', [
+                    'id'=> $entrep->getId(),
+                    'entrep'=>$entrep
+                ]);
             }
         
         return $this->render('pro_stage/createEntrep.html.twig', [

@@ -10,11 +10,23 @@ Liste des entreprises
 {% endblock %}
 
 
-{% block body %} 
+{% block body %}
+<div class="row">
 
-<ul>
-        {% for entrep in entreprise %}
-        <li> <a href="/entreprise/{{entrep.id}}">{{entrep.nom}} </li> </a>
-        {% endfor %}
-</ul>
+        <div class="col-6">
+                <ul>
+                        {% for entrep in entreprise %}
+                        <li> <a href="/entreprise/{{entrep.id}}">{{entrep.nom}} </li> </a>
+                        {% endfor %}
+                </ul>
+        </div>
+        <div class="col-6">
+                <p>
+                        <button>
+                                <a href="/create/entreprise"> Ajouter une entreprise </a>
+
+                        </button>
+                </p>
+        </div>
+</div>
 {% endblock %}
