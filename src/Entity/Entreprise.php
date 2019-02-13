@@ -38,6 +38,7 @@ class Entreprise
 
     /**
      * @ORM\Column(type="string", length=255)
+     * @Assert\Regex("/[0-9]{5}/", message="Code postal invalide")
      */
     private $adresse;
 
