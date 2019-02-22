@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class ProStageController extends AbstractController
 {
@@ -78,8 +79,14 @@ class ProStageController extends AbstractController
     public function createEntrep(Request $request)
     {
         $entrep = new Entreprise();
-        
-        $form = $this->createFormBuilder($entrep)
+        $form = $this->createForm(EntrepriseType::class,$entrep);
+        $form->add('save', SubmitType::class, [
+            'label' => 'Créer une nouvelle entreprise',
+            'attr' => ['class' => 'btn btn-default'],
+        ]);
+
+
+       /*  $form = $this->createFormBuilder($entrep)
             ->add('nom', TextType::class)
             ->add('activite', TextType::class)
             ->add('adresse')
@@ -87,7 +94,7 @@ class ProStageController extends AbstractController
             ->add('save', SubmitType::class, ['label' => 'Créer une nouvelle entreprise'])
             ->getForm();
 
-
+ */
             $form->handleRequest($request);
 
             if ($form->isSubmitted() && $form->isValid()) {
@@ -116,16 +123,22 @@ class ProStageController extends AbstractController
 
     /**
      * @Route("/entreprise/{entrep.id}/edit",name="entreprise_edit")
+     * @ParamConverter("entrep", class="App\Entity\Entreprise", options={"mapping":{"entrep.id":"id"}})
      */
     public function edit(Entreprise $entrep, Request $request)
     {
-        $form = $this->createFormBuilder($entrep)
+        $form = $this->createForm(EntrepriseType::class,$entrep);
+        $form->add('save', SubmitType::class, [
+            'label' => 'Modifier l\'entreprise',
+            'attr' => ['class' => 'btn btn-default'],
+        ]);
+        /* $form = $this->createFormBuilder($entrep)
             ->add('nom', TextType::class)
             ->add('activite', TextType::class)
             ->add('adresse')
             ->add('site', UrlType::class)
             ->add('save', SubmitType::class, ['label' => 'Modifier l\'entreprise'])
-            ->getForm();
+            ->getForm(); */
 
 
             $form->handleRequest($request);
