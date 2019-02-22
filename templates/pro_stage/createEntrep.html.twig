@@ -8,7 +8,7 @@ Ajouter une entreprise
 {% block titreslider2 %}
 Ajouter une entreprise
 {% endblock %}
-
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
 
 {% block body %}
 {% for label, messages in app.flashes %}
@@ -19,6 +19,25 @@ Ajouter une entreprise
 {% endfor %}
 <hr>
 {% endfor %}
+<div class="row">
+    <div class="offset-2 col-4">
+        {{ form_start(form) }}
+        <legend> Nom de l'entreprise : </legend>
+        {{ form_widget(form.nom, {attr: {class:'hauteur'}})}} <br>
 
-{{ form(form)}}
+        <legend> Activité de l'entreprise : </legend>
+        {{ form_widget(form.activite, {attr: {class:'hauteur'}})}} <br>
+
+        <legend> Adresse de l'entreprise : </legend>
+        {{ form_widget(form.adresse, {attr: {class:'hauteur'}})}} <br>
+
+        <legend> Site de l'entreprise : </legend>
+        {{ form_widget(form.site, {attr: {class:'hauteur'}})}} <br>
+
+{#         <button type="submit" class='hauteur'>{{ form_widget(form.save, {attr: {class:'hauteur'}})}} </button><br>
+ #}
+        {{ form_end(form) }}
+
+    </div>
+</div>
 {% endblock %}

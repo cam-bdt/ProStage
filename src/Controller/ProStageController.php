@@ -5,12 +5,13 @@ namespace App\Controller;
 use App\Entity\Stage;
 use App\Entity\Formation;
 use App\Entity\Entreprise;
+use App\Form\EntrepriseType;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\Form\Extension\Core\Type\UrlType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
-use App\Form\EntrepriseType;
 
 class ProStageController extends AbstractController
 {
@@ -114,7 +115,7 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/entreprise/{entrep}/edit",name="entreprise_edit")
+     * @Route("/entreprise/{entrep.id}/edit",name="entreprise_edit")
      */
     public function edit(Entreprise $entrep, Request $request)
     {
@@ -122,7 +123,7 @@ class ProStageController extends AbstractController
             ->add('nom', TextType::class)
             ->add('activite', TextType::class)
             ->add('adresse')
-            ->add('site')
+            ->add('site', UrlType::class)
             ->add('save', SubmitType::class, ['label' => 'Modifier l\'entreprise'])
             ->getForm();
 

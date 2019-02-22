@@ -23,7 +23,6 @@
                         <h2 class="h2carousel">
                             {% block titreslider1 %}
                             {% endblock %}
-
                         </h2>
                     </div>
                     <img class="d-block w-100" src="/img/slider1.png" alt="First slide" height="152" width="400">
@@ -33,7 +32,6 @@
                         <h2 class="h2carousel">
                             {% block titreslider2 %}
                             {% endblock %}
-
                         </h2>
                     </div>
                     <img class="d-block w-100" src="/img/slider2.jpg" alt="Second slide" height="100" width="400">
@@ -83,7 +81,15 @@
         </nav>
         {% endblock %}
         {% block body %}--- le corps ---{% endblock %}
-        {% block footer %}--- le footer ---{% endblock %}
+        {% block footer %}
+        <footer class="footer">
+            <div class="container row">
+            <div class="offset-6 col-6">
+                <p class="text-muted">Prostage @cam-bdt</p>
+                </div>
+            </div>
+        </footer>
+        {% endblock %}
     </div>
     {% block javascripts %}
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
