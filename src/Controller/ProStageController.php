@@ -122,8 +122,7 @@ class ProStageController extends AbstractController
     }
 
     /**
-     * @Route("/entreprise/{entrep.id}/edit",name="entreprise_edit")
-     * @ParamConverter("entrep", class="App\Entity\Entreprise", options={"mapping":{"entrep.id":"id"}})
+     * @Route("/entreprise/{id}/edit",name="entreprise_edit")
      */
     public function edit(Entreprise $entrep, Request $request)
     {
