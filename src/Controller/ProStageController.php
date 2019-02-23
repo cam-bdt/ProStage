@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Stage;
+use App\Form\StageType;
 use App\Entity\Formation;
 use App\Entity\Entreprise;
 use App\Form\EntrepriseType;
@@ -60,6 +61,41 @@ class ProStageController extends AbstractController
         return $this->render('pro_stage/unStage.html.twig', [
             'stage'=> $repositoryUnStage,
             'idStage'=>$id]);
+    }
+
+    /**
+     * @Route("/create/stage",name="createStage")
+     */
+    public function createStage(Request $request){
+        $stage = new Stage();
+        $form = $this->createForm(StageType::class,$stage);
+        $form -> add('save',SubmitType::class,[
+            'label' => 'Créer le stage',
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $stage = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+            $entityManager->persist($stage);
+
+            $this->addFlash(
+                'success',
+                'Le stage a bien été créé.'
+            );
+            return $this->render('pro_stage/unStage.html.twig', [
+                'idStage'=> $stage->getId(),
+                'stage'=>$stage
+            ]);
+        }
+    
+    return $this->render('pro_stage/createStage.html.twig', [
+        'form'=> $form->createView(),
+        ]);
     }
 
     /**

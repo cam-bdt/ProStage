@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+{% block title %} NOUVEAU STAGE - PROSTAGE {% endblock %}
+
+{% block titreslider1 %}
+Ajouter un stage
+{% endblock %}
+
+{% block titreslider2 %}
+Ajouter un stage
+{% endblock %}
+{% form_theme form 'bootstrap_4_layout.html.twig' %}
+
+{% block body %}
+{% for label, messages in app.flashes %}
+{% for message in messages %}
+<div class="flash-{{ label }} alert alert-{{ label }}">
+    {{ message }}
+</div>
+{% endfor %}
+<hr>
+{% endfor %}
+<div class="row">
+    <div class="offset-2 col-4">
+        {{ form_start(form) }}
+         <legend> Titre du stage : </legend>
+        {{ form_widget(form.titre, {attr: {class:'hauteurStage'}})}} <br>
+
+        <legend> Description du stage : </legend>
+        {{ form_widget(form.description, {attr: {class:'hauteurStage'}})}} <br>
+
+        <legend> Mail de contact : </legend>
+        {{ form_widget(form.mail, {attr: {class:'hauteurStage'}})}} <br>
+
+        <legend> Numéro de téléphone de contact : </legend>
+        {{ form_widget(form.telephone, {attr: {class:'hauteurStage'}})}} <br>
+
+        <legend> Nom du contact : </legend>
+        {{ form_widget(form.nomContact, {attr: {class:'hauteurStage'}})}} <br>
+
+        <legend> Entreprise : </legend>
+        {{ form_widget(form.entreprise, {attr: {class:'hauteurStage'}})}} <br>
+
+        <legend> Formation : </legend>
+        {{ form_widget(form.formation, {attr: {class:'hauteurStage'}})}} <br>
+
+
+ {#         <button type="submit" class='hauteur'>{{ form_widget(form.save, {attr: {class:'hauteur'}})}} </button><br>
+ #}
+         {{ form_end(form) }}
+ 
+    </div>
+</div>
+{% endblock %}
