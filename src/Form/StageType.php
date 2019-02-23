@@ -13,11 +13,12 @@ use Symfony\Component\Form\Extension\Core\Type\TelType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
+use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 
 class StageType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options)
-    {
+    {   
         $builder
             ->add('titre',TextType::class)
             ->add('description',TextareaType::class)
@@ -26,10 +27,18 @@ class StageType extends AbstractType
             ->add('nomContact',TextType::class)
             ->add('entreprise',EntityType::class,[
                 'class' => Entreprise::class,
-                'choice_label' => 'nom'])
-            ->add('formation',EntityType::class,[
+                'choice_label' => 'nom',
+                ])
+            /* ->add('formation',EntityType::class,[
                 'class' => Formation::class,
-                'choice_label' => 'libelle'])
+                'choice_label' => 'libelle',
+                ])   */
+            ->add('formation', CollectionType::class, [
+                'entry_type' => FormationType::class,
+                'allow_add' => true,
+                'allow_delete' => false,
+                'entry_options' => ['label' => false],
+                ])  
         ;
     }
 

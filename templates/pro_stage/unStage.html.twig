@@ -29,6 +29,9 @@
                 </div>
                 <div class="col-3">
                         <p>
+                                <h3>Entreprise : </h3>{{stage.entreprise.nom}}
+                        </p>
+                        <p>
                                 <h3>Nom du contact : </h3>{{stage.nomContact}}
                         </p>
                         <p>
@@ -39,5 +42,6 @@
                         </p>
                 </div>
         </div>
+<button><a href="{{path('editStage',{'id':stage.id})}}{# /stage/{id}/edit #}">Modifier le stage</a></button>
 </div>
 {% endblock %}

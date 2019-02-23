@@ -57,6 +57,8 @@ class Stage
     public function __construct()
     {
         $this->formation = new ArrayCollection();
+/*         $this->entreprise = new ArrayCollection();
+ */
     }
 
     public function getId(): ?int
@@ -160,5 +162,9 @@ class Stage
         }
 
         return $this;
+    }
+
+    public function __toString() {
+        return $this->titre;
     }
 }

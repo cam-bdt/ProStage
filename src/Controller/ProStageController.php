@@ -99,6 +99,41 @@ class ProStageController extends AbstractController
     }
 
     /**
+     * @Route("/stage/{id}/edit",name="editStage")
+     */
+    public function editStage(Request $request, Stage $stage){
+
+        $form = $this->createForm(StageType::class,$stage);
+        $form -> add('save',SubmitType::class,[
+            'label' => 'Modifier le stage',
+        ]);
+
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+
+            $stage = $form->getData();
+
+            $entityManager = $this->getDoctrine()->getManager();
+            $entityManager->flush();
+            $entityManager->persist($stage);
+
+            $this->addFlash(
+                'success',
+                'Le stage a bien été créé.'
+            );
+            return $this->render('pro_stage/unStage.html.twig', [
+                'idStage'=> $stage->getId(),
+                'stage'=>$stage
+            ]);
+        }
+    
+    return $this->render('pro_stage/createStage.html.twig', [
+        'form'=> $form->createView(),
+        ]);
+    }
+
+    /**
      * @Route("/entreprise/{id}",name="entreprise")
      */
     public function uneEntreprise($id)
