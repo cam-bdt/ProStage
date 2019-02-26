@@ -143,8 +143,15 @@ class Stage
      */
     public function getFormation(): Collection
     {
-        return $this->formation;
+/*         return $this->formation;
+ */        $formations = new ArrayCollection();
+            
+        foreach($this->formation as $formation){
+            $formations[] = $formation->getFormation();
+        }
+        return $formations;
     }
+    
 
     public function addFormation(Formation $formation): self
     {

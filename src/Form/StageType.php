@@ -21,7 +21,7 @@ class StageType extends AbstractType
     {   
         $builder
             ->add('titre',TextType::class)
-            ->add('description',TextareaType::class)
+            ->add('description',TextareaType::class)    
             ->add('mail',EmailType::class)
             ->add('telephone',TelType::class)
             ->add('nomContact',TextType::class)
@@ -32,13 +32,20 @@ class StageType extends AbstractType
             /* ->add('formation',EntityType::class,[
                 'class' => Formation::class,
                 'choice_label' => 'libelle',
-                ])   */
+                ])    */
+           /*  ->add('formation', CollectionType::class, array(
+                'entry_type'   => EntityType::class,
+                'entry_options'  => array(
+                    'class'      => 'Formation::class',
+                    'choice_label' => 'libelle'
+                ),)) */
+                
             ->add('formation', CollectionType::class, [
                 'entry_type' => FormationType::class,
                 'allow_add' => true,
                 'allow_delete' => false,
                 'entry_options' => ['label' => false],
-                ])  
+                ])   
         ;
     }
 

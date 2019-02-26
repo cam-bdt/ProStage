@@ -41,9 +41,18 @@ Ajouter un stage
         {{ form_widget(form.entreprise, {attr: {class:'hauteurStage'}})}} <br>
 
         <legend> Formation : </legend>
-        {{ form_widget(form.formation, {attr: {class:'hauteurStage'}})}} <br>
+{#         {{ form_widget(form.formation, {attr: {class:'hauteurStage'}})}} <br>
+ #}{{ form_label(form.formation) }}
 
-
+{# <ul>
+ #}{# {% for formation in form.formation %}
+ #}{#     <li>
+ #}        {{ form_widget(form.formation, {attr: {class:'hauteurStage'}}) }}
+{#     </li>
+ #}{# {% endfor %}
+ #}        {{ form_errors(form.formation) }}
+{# </ul>
+ #}
 
  {#         <button type="submit" class='hauteur'>{{ form_widget(form.save, {attr: {class:'hauteur'}})}} </button><br>
  #}
