@@ -1,15 +1,11 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: 
-            memory:
-                users:
-                    Camille:
-                        password: $2y$12$yMeYPrJMqa/A.zd/Mk0ZB.KJbFPVe2l028tTAX6slvoVHVh9Pse/W
-                        roles: 'ROLE_USER'
-                    admin:
-                        password: $2y$12$ertvdWh3Dxt5Cnfqr/eXAe6577GUdv1cFqQiCmEhier4bHOv76TUC
-                        roles: 'ROLE_ADMIN'
+        # used to reload user from session & other features (e.g. switch_user)
+        app_user_provider:
+            entity:
+                class: App\Entity\User
+                property: username
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -19,7 +15,10 @@ security:
 
             # activate different ways to authenticate
 
-            http_basic: true
+            # http_basic: true
+            guard:
+                authenticators:
+                    - App\Security\FormLoginAuthenticator
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
             # form_login: true
@@ -30,7 +29,7 @@ security:
     access_control:
         # - { path: ^/admin, roles: ROLE_ADMIN }
         # - { path: ^/profile, roles: ROLE_USER }
-        - { path: ^/create/entreprise, roles: ROLE_ADMIN }
+        - { path: ^/create/entreprise, roles: ROLE_USERPLUS }
         - { path: ^/create/stage, roles: [ROLE_USER, ROLE_ADMIN] }
 
     
@@ -38,3 +37,6 @@ security:
         Symfony\Component\Security\Core\User\User:
             algorithm: bcrypt
             cost: 12
+        App\Entity\User:
+            algorithm: argon2i
+

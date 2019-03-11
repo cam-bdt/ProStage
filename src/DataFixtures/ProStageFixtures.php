@@ -3,6 +3,7 @@
 namespace App\DataFixtures;
 
 use Faker\Factory;
+use App\Entity\User;
 use App\Entity\Stage;
 use App\Entity\Formation;
 use App\Entity\Entreprise;
@@ -13,6 +14,13 @@ class ProStageFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        //création des users 
+        $camille = new User();
+        $camille->setUsername("camille");
+        $camille->setRoles(["ROLE_USERPLUS"]);
+        $camille->setPassword('$argon2i$v=19$m=1024,t=2,p=2$c3RmMllSSGZyME5VbU1RYQ$xWj9ZymECtVxTz7+nz4oa62CEOcrzl0drI6zN5OUqHk');
+        $manager->persist($camille);
+
         //création générateur de données faker
         $faker = \Faker\Factory::create('fr_FR'); // create a French faker
 
