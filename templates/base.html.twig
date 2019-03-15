@@ -69,15 +69,22 @@
                     <li class="nav-item">
                         <a class="nav-link" href="/formations">Formations </a>
                     </li>
-                    <li class="nav-item">
+                    {# <li class="nav-item">
                         <a class="nav-link" href="/recherche">Rechercher </a>
+                    </li> #}
+                    <li class="nav-item">
+                    {% if app.user %}
+                        <a class="nav-link justify-content-end" href="/logout">Déconnexion </a>
+                    {% else %}
+                        <a class="nav-link justify-content-end" href="/login">Connexion </a>
+                    {% endif %}
                     </li>
                 </ul>
             </div>
-            <form class="form-inline my-2 my-lg-0">
+            {# <form class="form-inline my-2 my-lg-0">
                 <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
                 <button class="btn btn-outline-success btn-recherche-navbar my-2 my-sm-0" type="submit">Search</button>
-            </form>
+            </form> #}
         </nav>
         {% endblock %}
         {% block body %}--- le corps ---{% endblock %}
