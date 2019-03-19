@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} {{forma.libelle}} - PROSTAGE {% endblock %}
+
+{% block titreslider1 %} Bienvenue sur la formation n°{{idFormation}} : {{ forma.libelle }} {% endblock %}
+
+{% block titreslider2 %} Bienvenue sur la formation n°{{idFormation}} : {{ forma.libelle }} {% endblock %}
+
+{% block body %}
+<p> <h3> Libellé de la formation : </h3>{{ forma.libelle }} </p>
+
+<p> <h3> Stages proposés pour la formation de {{ forma.libelle }} : </h3></p>
+
+<ul>
+{% for stage in forma.stages %}
+
+<li> <a href="/stage/{{stage.getId()}}">{{ stage.titre }}</a></li>
+
+{% endfor %}
+</ul>
+
+    <button class="btn btn-primary"><a href="{{ path('formation_index') }}" style="color:white">Retour à la liste</a></button>
+
+    <button class="btn btn-primary"><a href="{{ path('formation_edit', {'id': formation.id}) }}" style="color:white">edit</a></button>
+<br> <br>
+    {{ include('formation/_delete_form.html.twig') }}
+{% endblock %}

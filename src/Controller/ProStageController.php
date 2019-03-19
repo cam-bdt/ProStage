@@ -238,16 +238,6 @@ class ProStageController extends AbstractController
         
     }
 
-    /**
-     * @Route("/formation/{id}",name="formation")
-     */
-    public function uneFormation($id)
-    {
-        $repositoryUneFormation = $this->getDoctrine()->getRepository(Formation::class)->find($id);
-        return $this->render('pro_stage/uneFormation.html.twig', [
-            'forma'=> $repositoryUneFormation,
-            'idFormation'=>$id]);
-    }
 
     /**
      * @Route("/recherche",name="Recherche")
