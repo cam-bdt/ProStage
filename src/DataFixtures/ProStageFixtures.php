@@ -14,12 +14,21 @@ class ProStageFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
+        // mdp :  php bin/console security:encode-password
         //création des users 
         $camille = new User();
         $camille->setUsername("camille");
         $camille->setRoles(["ROLE_USERPLUS"]);
         $camille->setPassword('$argon2i$v=19$m=1024,t=2,p=2$c3RmMllSSGZyME5VbU1RYQ$xWj9ZymECtVxTz7+nz4oa62CEOcrzl0drI6zN5OUqHk');
         $manager->persist($camille);
+
+        //création d'un admin
+        $admin = new User;
+        $admin->setUsername('admin');
+        $admin->setRoles(["ROLE_ADMIN"]).
+        $admin->setPassword('$argon2i$v=19$m=1024,t=2,p=2$TUxkLjIuLnk0MlFHVTBNaw$vNK5azFovRqM7t51go7jPIQwGn+uWXxf8xJ+I3/p6co');
+        $manager->persist($admin);
+
 
         //création générateur de données faker
         $faker = \Faker\Factory::create('fr_FR'); // create a French faker
